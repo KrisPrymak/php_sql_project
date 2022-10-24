@@ -25,13 +25,17 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="" class="form-label">Имя</label>
+                        <label for="" class="form-label">Год</label>
                         <input required type="number" class="form-control" name="year">
                     </div>
 
                     <div class="col-12">
                         <label for="" class="form-label">Курс</label>
-                        <input required type="text" class="form-control" name="course">
+                        <select class="select" name="course" id="">
+                            <?php foreach($courses as $c) { ?>
+                                <option value="<?= $c['title'] ?>"><?= $c['title'] ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-warning">
@@ -40,7 +44,8 @@
                 </form>
 
             </div>
-            <div class="col-6">
+            <div>_</div>
+            <div class="col-8">
                     <table class="table table-primary">
                         <thead>
                             <tr>
@@ -52,13 +57,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($result as $student) { ?>}
+                            <?php foreach($result as $student) { ?>
                             <tr>
                                 <th scope="row"><?= $student['name'] ?></th>
                                 <td><?= $student['second_name'] ?></td>
                                 <td><?= $student['year'] ?></td>
                                 <td><?= $student['course'] ?></td>
-                                <td><a class="btndelete"href="delete.php?id=<?= $student['id'] ?>">Удалить</a></td>
+                                <td><a class="btn btn-danger" onclick="check(<?= $student['id'] ?>)">Удалить</a></td>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -73,8 +78,6 @@
                 window.location = "delete.php?id=" + id;
             }
         }
-
-        document.querySelector('.btndelete').addEventListener('click', check(<?= $student['id'] ?>);
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
